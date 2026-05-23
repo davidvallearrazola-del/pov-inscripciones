@@ -322,8 +322,9 @@
   }
   .up-remove:hover{background:var(--ink);color:#fff}
   .panel-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;
   }
+  @media(max-width:900px){.panel-grid{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:680px){.panel-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:400px){.panel-grid{grid-template-columns:1fr}}
   .panel-btn{
@@ -450,7 +451,7 @@
     </div>
     <div class="hero-stats">
       <div class="st"><b>8+</b><span>Universidades</span></div>
-      <div class="st"><b>12</b><span>Panelistas</span></div>
+      <div class="st"><b>16</b><span>Panelistas</span></div>
       <div class="st"><b>1 día</b><span>Que cambia todo</span></div>
     </div>
   </div>
@@ -582,7 +583,7 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwKx2N7Ak_yu8tE6X4q3IvUEOT4UdflfKZJPFzBe5_I_GkGUeHUj01xWNjhtQCRJJVeOA/exec";
 
 /* Límites (se aplican igual aunque no se muestren al usuario) */
-const SEATS_PER_PANEL  = 67;
+const SEATS_PER_PANEL  = 50;
 const MAX_PARTICIPANTS = 400;
 
 /* Paneles — solo el área, sin nombres de panelistas */
@@ -593,6 +594,8 @@ const PANELS = [
   { id:"medicina",    name:"Medicina" },
   { id:"humanidades", name:"Humanidades" },
   { id:"tecnologia",  name:"Tecnología" },
+  { id:"abogacia",    name:"Abogacía" },
+  { id:"gastronomia", name:"Gastronomía" },
 ];
 
 const ROTATIONS = [

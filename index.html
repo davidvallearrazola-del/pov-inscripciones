@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscripción · POV 2026</title>
+<meta name="description" content="Inscríbete al evento POV 2026. Un evento donde panelistas reales y universidades top de El Salvador te ayudan a descubrir tu POV antes de elegir.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f3f1ea;
+    --bg-warm:#eeebe1;
+    --card:#ffffff;
+    --ink:#0e0e0c;
+    --ink-soft:#56544c;
+    --ink-mute:#8b8980;
+    --line:#dcd9cd;
+    --line-soft:#e6e3d8;
+    --lime:#d6f84a;
+    --lime-deep:#bce81f;
+    --lime-shadow:rgba(190,232,31,.5);
+    --green-ok:#1f7a3d;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--lime);color:var(--ink)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ---- NAV ---- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,241,234,.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s;
+  }
+  nav.scrolled{border-bottom-color:var(--line)}
+  .nav-in{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 0;width:100%;
+  }
+  .logo{
+    display:inline-flex;align-items:center;
+    font-family:'Archivo',sans-serif;font-weight:900;
+    font-size:1.5rem;letter-spacing:-.04em;color:var(--ink);
+    line-height:1;
+  }
+  .logo .bk{
+    font-weight:500;
+    font-size:1.7rem;
+    margin:0 .04em;
+    transform:scaleY(1.08);
+    display:inline-block;
+  }
+  .logo .pv{display:inline-block;transform:translateY(-1px)}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:.9rem;
+    color:var(--ink);background:var(--ink);
+    -webkit-text-fill-color:#fff;
+    padding:11px 22px;border-radius:100px;
+    text-decoration:none;border:none;cursor:pointer;
+    transition:transform .25s,background .25s;
+  }
+  .nav-cta span{color:var(--lime);-webkit-text-fill-color:var(--lime)}
+  .nav-cta:hover{transform:translateY(-2px)}
+
+  /* ---- HERO ---- */
+  header{padding:54px 0 40px;text-align:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:'Archivo',sans-serif;
+    font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    padding:8px 18px;border-radius:100px;margin-bottom:34px;
+    background:var(--card);
+  }
+  .eyebrow .pulse{
+    width:7px;height:7px;border-radius:50%;background:var(--lime-deep);
+    box-shadow:0 0 0 0 rgba(190,232,31,.7);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    70%{box-shadow:0 0 0 10px rgba(190,232,31,0)}
+    100%{box-shadow:0 0 0 0 rgba(190,232,31,0)}
+  }
+  h1.title{
+    font-family:'Archivo',sans-serif;font-weight:900;
+    font-size:clamp(3rem,11vw,7.6rem);
+    line-height:.92;letter-spacing:-.04em;
+    margin-bottom:30px;
+  }
+  h1.title .mark{
+    position:relative;display:inline-block;
+    padding:0 .12em;
+    z-index:0;
+  }
+  h1.title .mark::before{
+    content:"";position:absolute;
+    left:0;right:0;top:8%;bottom:8%;
+    background:var(--lime);
+    transform:rotate(-1.5deg);
+    border-radius:8px;
+    z-index:-1;
+    box-shadow:0 6px 22px var(--lime-shadow);
+  }
+  .lede{
+    font-size:clamp(1.05rem,2.3vw,1.32rem);
+    color:var(--ink-soft);max-width:560px;
+    margin:0 auto 40px;
+  }
+  .hero-cta{
+    display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+    margin-bottom:54px;
+  }
+  .btn-dark{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;
+    background:var(--ink);color:#fff;
+    padding:16px 30px;border-radius:100px;
+    border:none;cursor:pointer;text-decoration:none;
+    transition:transform .25s;
+  }
+  .btn-dark span{color:var(--lime)}
+  .btn-dark:hover{transform:translateY(-2px)}
+  .btn-ghost{
+    display:inline-flex;align-items:center;
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;
+    background:transparent;color:var(--ink);
+    padding:16px 30px;border-radius:100px;
+    border:1.5px solid var(--ink);cursor:pointer;text-decoration:none;
+    transition:background .25s,color .25s;
+  }
+  .btn-ghost:hover{background:var(--ink);color:#fff}
+  .hero-stats{
+    display:flex;gap:54px;justify-content:center;flex-wrap:wrap;
+  }
+  .hero-stats .st b{
+    display:block;
+    font-family:'Archivo',sans-serif;font-weight:900;
+    font-size:2.4rem;line-height:1;letter-spacing:-.03em;
+  }
+  .hero-stats .st span{
+    font-size:.92rem;color:var(--ink-mute);margin-top:6px;display:block;
+  }
+
+  /* ---- SECTION ---- */
+  section.block{
+    padding:40px 0 60px;
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  section.block .wrap{width:100%}
+  .sec-label{
+    font-family:'Archivo',sans-serif;
+    font-size:.76rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:16px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .sec-label::before{content:"";width:26px;height:2px;background:var(--lime-deep)}
+  h2.sec-title{
+    font-family:'Archivo',sans-serif;font-weight:900;
+    font-size:clamp(1.9rem,5vw,3rem);
+    line-height:1.02;letter-spacing:-.035em;margin-bottom:14px;
+  }
+  .sec-sub{color:var(--ink-soft);max-width:600px}
+
+  /* ---- FORM CARD ---- */
+  .form-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:clamp(26px,5vw,52px);
+    margin-top:26px;
+    box-shadow:0 18px 50px -28px rgba(40,38,25,.28);
+  }
+  .step-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px}
+  .step-num{
+    font-family:'Archivo',sans-serif;font-weight:900;
+    font-size:.95rem;color:var(--ink);
+    background:var(--lime);padding:3px 10px;border-radius:7px;
+  }
+  .step-head h3{
+    font-family:'Archivo',sans-serif;font-weight:800;
+    font-size:1.45rem;letter-spacing:-.02em;
+  }
+  .step-desc{color:var(--ink-soft);font-size:.95rem;margin:8px 0 26px}
+
+  .field{margin-bottom:20px}
+  .field label{
+    display:block;font-size:.85rem;font-weight:600;
+    color:var(--ink-soft);margin-bottom:9px;
+  }
+  .field label .req{color:var(--lime-deep);-webkit-text-stroke:.3px #9bb800}
+  .field input{
+    width:100%;
+    background:var(--bg);
+    border:1.5px solid var(--line);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;font-size:1rem;
+    padding:14px 16px;border-radius:var(--radius);
+    transition:border-color .2s,background .2s;outline:none;
+  }
+  .field input::placeholder{color:var(--ink-mute)}
+  .field input:focus{border-color:var(--ink);background:var(--card)}
+  .field input.err{border-color:#d4342a;background:#fdeceb}
+  .field .msg{font-size:.8rem;color:#d4342a;margin-top:7px;display:none}
+  .field .msg.show{display:block}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.grid-2{grid-template-columns:1fr}}
+
+  /* ---- ROTATIONS ---- */
+  .rotation{
+    border:1.5px solid var(--line);
+    border-radius:18px;padding:22px;margin-bottom:16px;
+    background:var(--bg);transition:border-color .25s,background .25s;
+  }
+  .rotation.done{border-color:var(--lime-deep);background:#fbfde9}
+  .rot-head{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;
+  }
+  .rot-head .rt{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.05rem}
+  .rot-head .rt small{
+    display:block;font-family:'Inter',sans-serif;font-weight:400;
+    font-size:.8rem;color:var(--ink-mute);margin-top:2px;
+  }
+  .rot-chip{
+    font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--ink-mute);border:1px solid var(--line);
+    padding:5px 13px;border-radius:100px;background:var(--card);
+  }
+  .rot-chip.set{
+    color:var(--green-ok);border-color:var(--lime-deep);background:var(--lime);
+  }
+
+  /* ---- PAYMENT CARD ---- */
+  .pay-card{
+    background:var(--bg);
+    border:1.5px solid var(--line);
+    border-radius:14px;padding:18px 20px;
+    margin-top:4px;
+  }
+  .pay-row{
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+    padding:9px 0;border-bottom:1px solid var(--line-soft);
+    font-size:.94rem;
+  }
+  .pay-row:last-child{border-bottom:none}
+  .pay-row span{color:var(--ink-mute);font-size:.86rem}
+  .pay-row b{font-weight:700}
+  .pay-row .acct{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Archivo',sans-serif;font-weight:800;
+    letter-spacing:.04em;font-size:1.02rem;
+  }
+  .copy-btn{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.72rem;
+    background:var(--ink);color:#fff;-webkit-text-fill-color:#fff;
+    border:none;padding:5px 11px;border-radius:100px;cursor:pointer;
+    transition:background .2s;
+  }
+  .copy-btn:hover{background:var(--lime-deep);color:var(--ink);-webkit-text-fill-color:var(--ink)}
+
+  /* ---- UPLOAD ZONE ---- */
+  .upload-zone{
+    border:2px dashed var(--line);
+    border-radius:14px;
+    background:var(--bg);
+    padding:26px 20px;
+    cursor:pointer;
+    transition:border-color .2s,background .2s;
+  }
+  .upload-zone:hover{border-color:var(--ink);background:var(--card)}
+  .upload-zone.err{border-color:#d4342a;background:#fdeceb}
+  .up-empty{text-align:center}
+  .up-icon{
+    width:46px;height:46px;border-radius:50%;
+    background:var(--lime);color:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.5rem;font-weight:900;margin:0 auto 12px;
+  }
+  .up-title{
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;
+    margin-bottom:4px;
+  }
+  .up-sub{font-size:.82rem;color:var(--ink-mute)}
+  .up-filled{
+    display:flex;align-items:center;gap:14px;
+  }
+  .up-thumb{
+    width:62px;height:62px;border-radius:10px;flex-shrink:0;
+    background:var(--lime);color:var(--ink);
+    background-size:cover;background-position:center;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.85rem;
+  }
+  .up-info{flex:1;min-width:0}
+  .up-name{
+    font-weight:600;font-size:.92rem;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .up-size{font-size:.78rem;color:var(--ink-mute);margin-top:2px}
+  .up-remove{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;
+    background:transparent;color:var(--ink);
+    border:1.5px solid var(--ink);
+    padding:8px 14px;border-radius:100px;cursor:pointer;
+    transition:background .2s,color .2s;flex-shrink:0;
+  }
+  .up-remove:hover{background:var(--ink);color:#fff}
+  .panel-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;
+  }
+  @media(max-width:680px){.panel-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:400px){.panel-grid{grid-template-columns:1fr}}
+  .panel-btn{
+    position:relative;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:12px;padding:18px 14px;
+    cursor:pointer;text-align:center;
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;
+    color:var(--ink);transition:all .18s;
+  }
+  .panel-btn:hover:not(:disabled):not(.sel){
+    border-color:var(--ink);transform:translateY(-2px);
+  }
+  .panel-btn.sel{
+    border-color:var(--lime-deep);background:var(--lime);
+  }
+  .panel-btn.sel::after{
+    content:"✓";position:absolute;top:9px;right:12px;
+    font-weight:900;color:var(--ink);font-size:.9rem;
+  }
+  .panel-btn:disabled,.panel-btn.full,.panel-btn.taken-other{
+    opacity:.34;cursor:not-allowed;
+  }
+  .panel-btn .sub{
+    display:block;font-family:'Inter',sans-serif;font-weight:500;
+    font-size:.72rem;color:var(--ink-mute);margin-top:5px;
+    text-transform:none;letter-spacing:0;min-height:1em;
+  }
+  .panel-btn.full .sub{color:#d4342a}
+
+  /* ---- SUBMIT ---- */
+  .submit-row{margin-top:30px}
+  .btn-primary{
+    width:100%;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:1.08rem;
+    background:var(--ink);color:#fff;
+    border:none;padding:19px;border-radius:var(--radius);
+    cursor:pointer;transition:transform .2s,opacity .2s;
+  }
+  .btn-primary span.arr{color:var(--lime)}
+  .btn-primary:hover:not(:disabled){transform:translateY(-2px)}
+  .btn-primary:disabled{opacity:.4;cursor:not-allowed}
+  .btn-primary .spin{
+    width:18px;height:18px;border:2px solid rgba(255,255,255,.35);
+    border-top-color:#fff;border-radius:50%;
+    animation:rot .7s linear infinite;display:none;
+  }
+  .btn-primary.loading .spin{display:block}
+  .btn-primary.loading .lbl,.btn-primary.loading .arr{display:none}
+  @keyframes rot{to{transform:rotate(360deg)}}
+  .form-note{text-align:center;font-size:.82rem;color:var(--ink-mute);margin-top:16px}
+  .glob-err{
+    background:#fdeceb;border:1px solid #f0bdb9;color:#b32a20;
+    padding:13px 16px;border-radius:12px;font-size:.9rem;
+    margin-bottom:20px;display:none;
+  }
+  .glob-err.show{display:block}
+
+  /* ---- SUCCESS / CLOSED ---- */
+  .success,.closed{display:none;text-align:center;padding:50px 20px}
+  .success.show,.closed.show{display:block;animation:fade .5s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .success .check{
+    width:80px;height:80px;border-radius:50%;
+    background:var(--lime);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 24px;font-size:2.1rem;color:var(--ink);font-weight:900;
+  }
+  .success h3,.closed h3{
+    font-family:'Archivo',sans-serif;font-weight:900;
+    font-size:2rem;margin-bottom:10px;letter-spacing:-.025em;
+  }
+  .success p,.closed p{color:var(--ink-soft);max-width:430px;margin:0 auto 26px}
+  .success .recap{
+    background:var(--bg);border:1px solid var(--line);
+    border-radius:14px;padding:20px;max-width:430px;
+    margin:0 auto;text-align:left;
+  }
+  .success .recap .rl{
+    display:flex;justify-content:space-between;gap:14px;
+    padding:9px 0;font-size:.92rem;border-bottom:1px solid var(--line-soft);
+  }
+  .success .recap .rl:last-child{border-bottom:none}
+  .success .recap .rl span{color:var(--ink-mute)}
+  .success .recap .rl b{font-weight:700;text-align:right}
+
+  /* ---- FOOTER ---- */
+  footer{
+    border-top:1px solid var(--line);padding:42px 0;
+    text-align:center;
+  }
+  footer .fl{
+    display:inline-flex;align-items:baseline;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:1.4rem;
+    margin-bottom:10px;letter-spacing:-.04em;
+  }
+  footer .fl .bk{font-weight:500;font-size:1.55rem;margin:0 .04em}
+  footer p{font-size:.88rem;color:var(--ink-mute)}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap"><div class="nav-in">
+    <div class="logo"><span class="bk">[</span><span class="pv">POV</span><span class="bk">]</span></div>
+    <button class="nav-cta" onclick="document.getElementById('form-start').scrollIntoView()">
+      Inscríbete <span>→</span>
+    </button>
+  </div></div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow"><span class="pulse"></span> POV 2026 · Cupos limitados</div>
+    <h1 class="title">¿Qué carrera<br>vas a <span class="mark">estudiar</span> ?</h1>
+    <p class="lede">Un evento donde panelistas reales y universidades top de El Salvador te ayudan a descubrir tu POV antes de elegir.</p>
+    <div class="hero-cta">
+      <button class="btn-dark" onclick="document.getElementById('form-start').scrollIntoView()">
+        Inscríbete al evento <span>→</span>
+      </button>
+      <a class="btn-ghost" href="#detalles">Ver detalles</a>
+    </div>
+    <div class="hero-stats">
+      <div class="st"><b>8+</b><span>Universidades</span></div>
+      <div class="st"><b>12</b><span>Panelistas</span></div>
+      <div class="st"><b>1 día</b><span>Que cambia todo</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="form-start">
+  <div class="wrap">
+    <div class="sec-label">Inscripción</div>
+    <h2 class="sec-title">Aparta tu lugar.</h2>
+    <p class="sec-sub">Completa tus datos, elige a qué panel quieres entrar en cada una de las 3 plenarias del día y sube tu comprobante de pago. No puedes repetir el mismo panel.</p>
+
+    <div class="form-card" id="loadingCard">
+      <p style="color:var(--ink-soft);text-align:center;padding:30px 0">Cargando inscripción…</p>
+    </div>
+
+    <div class="form-card closed" id="closedCard">
+      <h3>Inscripciones cerradas</h3>
+      <p>Hemos alcanzado el cupo máximo de participantes para POV 2026. Síguenos en redes para más información y próximos eventos.</p>
+    </div>
+
+    <div class="form-card" id="formCard" style="display:none">
+      <div class="glob-err" id="globErr"></div>
+
+      <div class="step-head">
+        <span class="step-num">01</span><h3>Tus datos</h3>
+      </div>
+      <p class="step-desc">Usaremos esto para tu gafete y para enviarte la confirmación.</p>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Nombre completo <span class="req">*</span></label>
+          <input type="text" id="f_nombre" placeholder="Ej. María José Pérez" autocomplete="name">
+          <div class="msg" id="m_nombre">Escribe tu nombre completo.</div>
+        </div>
+        <div class="field">
+          <label>Colegio o institución <span class="req">*</span></label>
+          <input type="text" id="f_colegio" placeholder="Ej. Colegio Bautista" autocomplete="organization">
+          <div class="msg" id="m_colegio">Indica tu colegio.</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Celular (WhatsApp) <span class="req">*</span></label>
+          <input type="tel" id="f_celular" placeholder="Ej. 7777-8888" autocomplete="tel" inputmode="tel">
+          <div class="msg" id="m_celular">Ingresa un número de 8 dígitos.</div>
+        </div>
+        <div class="field">
+          <label>Correo electrónico <span class="req">*</span></label>
+          <input type="email" id="f_correo" placeholder="tucorreo@gmail.com" autocomplete="email" inputmode="email">
+          <div class="msg" id="m_correo">Ingresa un correo válido.</div>
+        </div>
+      </div>
+
+      <div class="step-head" style="margin-top:40px">
+        <span class="step-num">02</span><h3>Elige tus paneles</h3>
+      </div>
+      <p class="step-desc">El día tiene 3 plenarias de paneles. Elige a cuál entrar en cada una — un panel distinto por plenaria.</p>
+
+      <div id="rotations"></div>
+
+      <div class="step-head" style="margin-top:40px">
+        <span class="step-num">03</span><h3>Comprobante de pago</h3>
+      </div>
+      <p class="step-desc">Realiza el pago a la siguiente cuenta y sube la captura del comprobante. <b>Sin comprobante no se puede confirmar la inscripción.</b></p>
+
+      <div class="pay-card">
+        <div class="pay-row"><span>Titular</span><b>José Valle</b></div>
+        <div class="pay-row"><span>Banco</span><b>Bancoagrícola</b></div>
+        <div class="pay-row"><span>Tipo de cuenta</span><b>Cuenta de Ahorro</b></div>
+        <div class="pay-row">
+          <span>Número de cuenta</span>
+          <b class="acct">3520651578
+            <button type="button" class="copy-btn" onclick="copyAcct(this)" aria-label="Copiar número">Copiar</button>
+          </b>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:22px">
+        <label>Comprobante de pago <span class="req">*</span></label>
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('f_comprobante').click()">
+          <input type="file" id="f_comprobante" accept="image/*,application/pdf" style="display:none" onchange="onFile(event)">
+          <div class="up-empty" id="upEmpty">
+            <div class="up-icon">↑</div>
+            <div class="up-title">Sube tu comprobante</div>
+            <div class="up-sub">Imagen (JPG, PNG) o PDF · máx. 5 MB</div>
+          </div>
+          <div class="up-filled" id="upFilled" style="display:none">
+            <div class="up-thumb" id="upThumb"></div>
+            <div class="up-info">
+              <div class="up-name" id="upName"></div>
+              <div class="up-size" id="upSize"></div>
+            </div>
+            <button type="button" class="up-remove" onclick="event.stopPropagation();clearFile()">Cambiar</button>
+          </div>
+        </div>
+        <div class="msg" id="m_comprobante">Debes subir tu comprobante de pago para inscribirte.</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="btn-primary" id="submitBtn" onclick="submitForm()">
+          <span class="spin"></span>
+          <span class="lbl">Confirmar mi inscripción</span>
+          <span class="arr">→</span>
+        </button>
+        <p class="form-note">Al inscribirte aceptas recibir información del evento por WhatsApp y correo.</p>
+      </div>
+    </div>
+
+    <div class="form-card success" id="successCard">
+      <div class="check">✓</div>
+      <h3>¡Estás dentro!</h3>
+      <p>Tu lugar en POV 2026 está confirmado. Te enviaremos los detalles por WhatsApp y correo. ¡Nos vemos pronto!</p>
+      <div class="recap" id="recap"></div>
+    </div>
+  </div>
+</section>
+
+<footer id="detalles">
+  <div class="wrap">
+    <div class="fl"><span class="bk">[</span><span class="pv">POV</span><span class="bk">]</span> <span style="font-weight:700;font-size:.9rem;letter-spacing:0;margin-left:6px">2026</span></div>
+    <p>Un evento de Good News · Campus Cuscatlán, San Salvador</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN — PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
+   ============================================================ */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwKx2N7Ak_yu8tE6X4q3IvUEOT4UdflfKZJPFzBe5_I_GkGUeHUj01xWNjhtQCRJJVeOA/exec";
+
+/* Límites (se aplican igual aunque no se muestren al usuario) */
+const SEATS_PER_PANEL  = 67;
+const MAX_PARTICIPANTS = 400;
+
+/* Paneles — solo el área, sin nombres de panelistas */
+const PANELS = [
+  { id:"mercadeo",    name:"Mercadeo / Negocios" },
+  { id:"diseno",      name:"Diseño" },
+  { id:"ingenierias", name:"Ingenierías" },
+  { id:"medicina",    name:"Medicina" },
+  { id:"humanidades", name:"Humanidades" },
+  { id:"tecnologia",  name:"Tecnología" },
+];
+
+const ROTATIONS = [
+  { key:"r1", label:"Plenaria 1", time:"10:10 – 10:45 AM · Panel Profesional I" },
+  { key:"r2", label:"Plenaria 2", time:"11:00 – 11:45 AM · Panel Profesional II" },
+  { key:"r3", label:"Plenaria 3", time:"12:00 – 12:45 PM · Panel Profesional III" },
+];
+
+let counts = {};
+let totalParticipants = 0;
+let selection = { r1:null, r2:null, r3:null };
+let comprobante = null;     // { name, type, size, base64 }
+const MAX_FILE_BYTES = 5 * 1024 * 1024; // 5 MB
+
+window.addEventListener('load', init);
+
+async function init(){
+  buildRotations();
+  await loadCounts();
+}
+
+function buildRotations(){
+  document.getElementById('rotations').innerHTML = ROTATIONS.map(rot => `
+    <div class="rotation" id="rot-${rot.key}">
+      <div class="rot-head">
+        <div class="rt">${rot.label}<small>${rot.time}</small></div>
+        <div class="rot-chip" id="chip-${rot.key}">Sin elegir</div>
+      </div>
+      <div class="panel-grid">
+        ${PANELS.map(p => `
+          <button type="button" class="panel-btn" id="btn-${rot.key}-${p.id}"
+                  onclick="pick('${rot.key}','${p.id}')">
+            ${p.name}<span class="sub" id="sub-${rot.key}-${p.id}"></span>
+          </button>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+async function loadCounts(){
+  try{
+    let data=null;
+    if(SCRIPT_URL && !SCRIPT_URL.includes("PEGA_AQUI")){
+      const res=await fetch(SCRIPT_URL+"?action=counts");
+      data=await res.json();
+    }
+    if(data && data.ok){
+      counts=data.counts||{}; totalParticipants=data.total||0;
+    }else{
+      ROTATIONS.forEach(r=>{counts[r.key]={};PANELS.forEach(p=>counts[r.key][p.id]=0)});
+      totalParticipants=0;
+    }
+  }catch(e){
+    ROTATIONS.forEach(r=>{counts[r.key]={};PANELS.forEach(p=>counts[r.key][p.id]=0)});
+    totalParticipants=0;
+  }
+  document.getElementById('loadingCard').style.display='none';
+  if(totalParticipants>=MAX_PARTICIPANTS){
+    document.getElementById('closedCard').classList.add('show');return;
+  }
+  document.getElementById('formCard').style.display='block';
+  refreshSeats();
+}
+
+function seatsFor(rk,pid){
+  const u=(counts[rk]&&counts[rk][pid])?counts[rk][pid]:0;
+  return Math.max(0,SEATS_PER_PANEL-u);
+}
+
+function refreshSeats(){
+  ROTATIONS.forEach(rot=>{
+    PANELS.forEach(p=>{
+      const btn=document.getElementById(`btn-${rot.key}-${p.id}`);
+      const sub=document.getElementById(`sub-${rot.key}-${p.id}`);
+      const free=seatsFor(rot.key,p.id);
+      const isSel=selection[rot.key]===p.id;
+      const takenElsewhere=Object.entries(selection)
+        .some(([rk,pid])=>rk!==rot.key&&pid===p.id);
+
+      btn.classList.remove('sel','full','taken-other');
+      btn.disabled=false; sub.textContent="";
+
+      if(isSel){
+        btn.classList.add('sel');
+      }else if(free<=0){
+        btn.classList.add('full');btn.disabled=true;sub.textContent="Lleno";
+      }else if(takenElsewhere){
+        btn.classList.add('taken-other');btn.disabled=true;
+        sub.textContent="Elegido en otra rotación";
+      }
+    });
+    const chip=document.getElementById('chip-'+rot.key);
+    const rotEl=document.getElementById('rot-'+rot.key);
+    if(selection[rot.key]){
+      chip.textContent=PANELS.find(x=>x.id===selection[rot.key]).name;
+      chip.classList.add('set'); rotEl.classList.add('done');
+    }else{
+      chip.textContent="Sin elegir";
+      chip.classList.remove('set'); rotEl.classList.remove('done');
+    }
+  });
+}
+
+function pick(rk,pid){
+  if(selection[rk]===pid){ selection[rk]=null; }
+  else{
+    if(seatsFor(rk,pid)<=0) return;
+    if(Object.entries(selection).some(([k,v])=>k!==rk&&v===pid)) return;
+    selection[rk]=pid;
+  }
+  refreshSeats();
+}
+
+function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)}
+function validPhone(v){return /^[0-9]{8}$/.test(v.replace(/\D/g,''))}
+function showFieldError(id,s){
+  const i=document.getElementById('f_'+id),m=document.getElementById('m_'+id);
+  if(s){i.classList.add('err');m.classList.add('show')}
+  else{i.classList.remove('err');m.classList.remove('show')}
+}
+
+/* ---------- Comprobante ---------- */
+function onFile(ev){
+  const file = ev.target.files[0];
+  if(!file) return;
+  if(file.size > MAX_FILE_BYTES){
+    alert("El archivo pesa más de 5 MB. Por favor reduce el tamaño o usa otra imagen.");
+    ev.target.value=""; return;
+  }
+  const ok = /^image\//.test(file.type) || file.type==="application/pdf";
+  if(!ok){
+    alert("Solo se aceptan imágenes (JPG/PNG) o PDF."); ev.target.value=""; return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    comprobante = {
+      name:file.name, type:file.type, size:file.size,
+      base64:e.target.result.split(",")[1] // sin el prefijo data:...;base64,
+    };
+    document.getElementById('upEmpty').style.display='none';
+    document.getElementById('upFilled').style.display='flex';
+    document.getElementById('upName').textContent=file.name;
+    document.getElementById('upSize').textContent=(file.size/1024).toFixed(0)+" KB";
+    const thumb=document.getElementById('upThumb');
+    if(file.type.startsWith('image/')){
+      thumb.style.backgroundImage=`url(${e.target.result})`;
+      thumb.textContent="";
+    }else{
+      thumb.style.backgroundImage="none";
+      thumb.textContent="PDF";
+    }
+    document.getElementById('m_comprobante').classList.remove('show');
+    document.getElementById('uploadZone').classList.remove('err');
+  };
+  reader.readAsDataURL(file);
+}
+function clearFile(){
+  comprobante = null;
+  document.getElementById('f_comprobante').value="";
+  document.getElementById('upEmpty').style.display='block';
+  document.getElementById('upFilled').style.display='none';
+}
+function copyAcct(btn){
+  navigator.clipboard.writeText("3520651578");
+  const orig = btn.textContent;
+  btn.textContent="¡Copiado!";
+  setTimeout(()=>btn.textContent=orig, 1600);
+}
+
+async function submitForm(){
+  const ge=document.getElementById('globErr');ge.classList.remove('show');
+  const nombre=document.getElementById('f_nombre').value.trim();
+  const colegio=document.getElementById('f_colegio').value.trim();
+  const celular=document.getElementById('f_celular').value.trim();
+  const correo=document.getElementById('f_correo').value.trim();
+
+  let ok=true;
+  if(nombre.length<3){showFieldError('nombre',true);ok=false}else showFieldError('nombre',false);
+  if(colegio.length<2){showFieldError('colegio',true);ok=false}else showFieldError('colegio',false);
+  if(!validPhone(celular)){showFieldError('celular',true);ok=false}else showFieldError('celular',false);
+  if(!validEmail(correo)){showFieldError('correo',true);ok=false}else showFieldError('correo',false);
+
+  if(!selection.r1||!selection.r2||!selection.r3){
+    ok=false;
+    ge.textContent="Debes elegir un panel para cada una de las 3 plenarias.";
+    ge.classList.add('show');
+  }
+
+  if(!comprobante){
+    ok=false;
+    document.getElementById('m_comprobante').classList.add('show');
+    document.getElementById('uploadZone').classList.add('err');
+    if(ge.textContent==="") {
+      ge.textContent="Debes subir tu comprobante de pago para completar la inscripción.";
+      ge.classList.add('show');
+    }
+  }
+
+  if(!ok){
+    document.getElementById('formCard').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+
+  const btn=document.getElementById('submitBtn');
+  btn.classList.add('loading');btn.disabled=true;
+
+  const payload={
+    nombre,colegio,celular,correo,
+    r1:selection.r1,r2:selection.r2,r3:selection.r3,
+    r1_nombre:PANELS.find(p=>p.id===selection.r1).name,
+    r2_nombre:PANELS.find(p=>p.id===selection.r2).name,
+    r3_nombre:PANELS.find(p=>p.id===selection.r3).name,
+    file_name:comprobante.name,
+    file_type:comprobante.type,
+    file_base64:comprobante.base64
+  };
+
+  try{
+    if(!SCRIPT_URL||SCRIPT_URL.includes("PEGA_AQUI")){
+      await new Promise(r=>setTimeout(r,1100));
+      showSuccess(payload);return;
+    }
+    const res=await fetch(SCRIPT_URL,{
+      method:"POST",
+      mode:"cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(payload)
+    });
+    const txt=await res.text();
+    let data;
+    try{ data=JSON.parse(txt); }
+    catch(parseErr){
+      console.error("Respuesta no es JSON:", txt);
+      throw new Error("invalid_response");
+    }
+    if(data.ok){ showSuccess(payload); }
+    else if(data.error==="full_panel"){
+      ge.textContent="Uno de los paneles que elegiste se acaba de llenar. Actualizando…";
+      ge.classList.add('show');
+      await loadCounts(); selection={r1:null,r2:null,r3:null}; refreshSeats();
+      btn.classList.remove('loading');btn.disabled=false;
+    }
+    else if(data.error==="event_full"){
+      document.getElementById('formCard').style.display='none';
+      document.getElementById('closedCard').classList.add('show');
+    }
+    else if(data.error==="missing_proof"){
+      ge.textContent="Debes subir tu comprobante de pago.";
+      ge.classList.add('show');
+      btn.classList.remove('loading');btn.disabled=false;
+    }
+    else{ throw new Error(data.error||"unknown"); }
+  }catch(e){
+    console.error("Error al enviar:", e);
+    ge.textContent="Hubo un problema al enviar tu inscripción. Revisa tu conexión e intenta de nuevo. (Detalle en consola: "+e.message+")";
+    ge.classList.add('show');
+    btn.classList.remove('loading');btn.disabled=false;
+  }
+}
+
+function showSuccess(p){
+  document.getElementById('formCard').style.display='none';
+  document.getElementById('recap').innerHTML=`
+    <div class="rl"><span>Nombre</span><b>${p.nombre}</b></div>
+    <div class="rl"><span>Colegio</span><b>${p.colegio}</b></div>
+    <div class="rl"><span>Plenaria 1</span><b>${p.r1_nombre}</b></div>
+    <div class="rl"><span>Plenaria 2</span><b>${p.r2_nombre}</b></div>
+    <div class="rl"><span>Plenaria 3</span><b>${p.r3_nombre}</b></div>`;
+  const sc=document.getElementById('successCard');
+  sc.classList.add('show');
+  sc.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+});
+</script>
+</body>
+</html>

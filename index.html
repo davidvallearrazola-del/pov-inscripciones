@@ -274,6 +274,58 @@
   }
   .copy-btn:hover{background:var(--lime-deep);color:var(--ink);-webkit-text-fill-color:var(--ink)}
 
+  /* ---- LUNCH CARD ---- */
+  .lunch-card{
+    display:flex;align-items:center;gap:16px;
+    background:var(--bg);
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    cursor:pointer;
+    transition:border-color .2s,background .2s;
+    margin-top:4px;
+  }
+  .lunch-card:hover{border-color:var(--ink)}
+  .lunch-card input{
+    position:absolute;opacity:0;width:0;height:0;
+  }
+  .lunch-check{
+    width:24px;height:24px;flex-shrink:0;
+    border:2px solid var(--ink);
+    border-radius:7px;background:var(--card);
+    transition:background .2s,border-color .2s;
+    position:relative;
+  }
+  .lunch-card input:checked ~ .lunch-check{
+    background:var(--lime);border-color:var(--lime-deep);
+  }
+  .lunch-card input:checked ~ .lunch-check::after{
+    content:"✓";position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;color:var(--ink);font-size:.95rem;line-height:1;
+  }
+  .lunch-card input:checked ~ .lunch-info .lunch-title{color:var(--ink)}
+  .lunch-card:has(input:checked){
+    background:#fbfde9;border-color:var(--lime-deep);
+  }
+  .lunch-info{flex:1}
+  .lunch-title{
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+  .lunch-price{
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:.82rem;
+    background:var(--lime);color:var(--ink);
+    padding:3px 10px;border-radius:100px;letter-spacing:.02em;
+  }
+  .lunch-desc{
+    font-size:.88rem;color:var(--ink-soft);margin-top:3px;
+  }
+  .lunch-note{
+    font-size:.78rem;color:var(--ink-mute);margin-top:6px;
+    font-style:italic;
+  }
+
   /* ---- UPLOAD ZONE ---- */
   .upload-zone{
     border:2px dashed var(--line);
@@ -513,9 +565,24 @@
       <div id="rotations"></div>
 
       <div class="step-head" style="margin-top:40px">
-        <span class="step-num">03</span><h3>Comprobante de pago</h3>
+        <span class="step-num">03</span><h3>¿Quieres almuerzo?</h3>
       </div>
-      <p class="step-desc">Realiza el pago a la siguiente cuenta y sube la captura del comprobante. <b>Sin comprobante no se puede confirmar la inscripción.</b></p>
+      <p class="step-desc">Opcional. Si lo agregas, súmalo al monto del comprobante de pago.</p>
+
+      <label class="lunch-card" for="f_almuerzo">
+        <input type="checkbox" id="f_almuerzo" onchange="toggleLunch()">
+        <div class="lunch-check"></div>
+        <div class="lunch-info">
+          <div class="lunch-title">Sí, quiero almuerzo <span class="lunch-price">+ $2</span></div>
+          <div class="lunch-desc">Incluye 2 choripanes, un snack y una soda.</div>
+          <div class="lunch-note">Puedes pagarlo por anticipado junto con la entrada, o el mismo día del evento.</div>
+        </div>
+      </label>
+
+      <div class="step-head" style="margin-top:40px">
+        <span class="step-num">04</span><h3>Comprobante de pago</h3>
+      </div>
+      <p class="step-desc">Realiza el pago a la siguiente cuenta y sube la captura del comprobante. <b>Sin comprobante no se puede confirmar la inscripción.</b> <span id="payTotal" style="display:none"><br>Si pagas el almuerzo por anticipado, el monto total es <b id="payTotalAmt">$5</b>. Si lo pagas el día del evento, sube solo el comprobante de la entrada.</span></p>
 
       <div class="pay-card">
         <div class="pay-row"><span>Titular</span><b>José Valle</b></div>
@@ -599,9 +666,9 @@ const PANELS = [
 ];
 
 const ROTATIONS = [
-  { key:"r1", label:"Plenaria 1", time:"10:10 – 10:45 AM · Panel Profesional I" },
-  { key:"r2", label:"Plenaria 2", time:"11:00 – 11:45 AM · Panel Profesional II" },
-  { key:"r3", label:"Plenaria 3", time:"12:00 – 12:45 PM · Panel Profesional III" },
+  { key:"r1", label:"Plenaria 1", time:"Panel Profesional I" },
+  { key:"r2", label:"Plenaria 2", time:"Panel Profesional II" },
+  { key:"r3", label:"Plenaria 3", time:"Panel Profesional III" },
 ];
 
 let counts = {};
@@ -764,6 +831,17 @@ function copyAcct(btn){
   setTimeout(()=>btn.textContent=orig, 1600);
 }
 
+/* Costos */
+const COST_ENTRY = 3;   // costo de entrada base (USD)
+const COST_LUNCH = 2;   // costo de almuerzo (USD)
+
+function toggleLunch(){
+  const wantsLunch = document.getElementById('f_almuerzo').checked;
+  const total = COST_ENTRY + (wantsLunch ? COST_LUNCH : 0);
+  document.getElementById('payTotalAmt').textContent = "$"+total;
+  document.getElementById('payTotal').style.display = wantsLunch ? 'inline' : 'none';
+}
+
 async function submitForm(){
   const ge=document.getElementById('globErr');ge.classList.remove('show');
   const nombre=document.getElementById('f_nombre').value.trim();
@@ -803,6 +881,7 @@ async function submitForm(){
 
   const payload={
     nombre,colegio,celular,correo,
+    almuerzo: document.getElementById('f_almuerzo').checked ? "Sí" : "No",
     r1:selection.r1,r2:selection.r2,r3:selection.r3,
     r1_nombre:PANELS.find(p=>p.id===selection.r1).name,
     r2_nombre:PANELS.find(p=>p.id===selection.r2).name,
@@ -862,7 +941,8 @@ function showSuccess(p){
     <div class="rl"><span>Colegio</span><b>${p.colegio}</b></div>
     <div class="rl"><span>Plenaria 1</span><b>${p.r1_nombre}</b></div>
     <div class="rl"><span>Plenaria 2</span><b>${p.r2_nombre}</b></div>
-    <div class="rl"><span>Plenaria 3</span><b>${p.r3_nombre}</b></div>`;
+    <div class="rl"><span>Plenaria 3</span><b>${p.r3_nombre}</b></div>
+    <div class="rl"><span>Almuerzo</span><b>${p.almuerzo}</b></div>`;
   const sc=document.getElementById('successCard');
   sc.classList.add('show');
   sc.scrollIntoView({behavior:'smooth',block:'center'});

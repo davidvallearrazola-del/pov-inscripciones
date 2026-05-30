@@ -513,7 +513,7 @@
   <div class="wrap">
     <div class="sec-label">Inscripción</div>
     <h2 class="sec-title">Aparta tu lugar.</h2>
-    <p class="sec-sub">Completa tus datos, elige a qué panel quieres entrar en cada una de las 3 plenarias del día y sube tu comprobante de pago. No puedes repetir el mismo panel.</p>
+    <p class="sec-sub">Completa tus datos, elige a qué panel profesional quieres entrar en cada uno de los 3 bloques del día y sube tu comprobante de pago. No puedes repetir el mismo panel.</p>
 
     <div class="form-card" id="loadingCard">
       <p style="color:var(--ink-soft);text-align:center;padding:30px 0">Cargando inscripción…</p>
@@ -558,9 +558,9 @@
       </div>
 
       <div class="step-head" style="margin-top:40px">
-        <span class="step-num">02</span><h3>Elige tus paneles</h3>
+        <span class="step-num">02</span><h3>Elige tus paneles profesionales</h3>
       </div>
-      <p class="step-desc">El día tiene 3 plenarias de paneles. Elige a cuál entrar en cada una — un panel distinto por plenaria.</p>
+      <p class="step-desc">El día tiene 3 paneles profesionales. Elige a cuál entrar en cada uno — un panel distinto por bloque.</p>
 
       <div id="rotations"></div>
 
@@ -630,7 +630,7 @@
     <div class="form-card success" id="successCard">
       <div class="check">✓</div>
       <h3>¡Estás dentro!</h3>
-      <p>Tu lugar en POV 2026 está confirmado. Te enviaremos los detalles por WhatsApp y correo. ¡Nos vemos pronto!</p>
+      <p>Tu lugar en POV 2026 está confirmado. Te enviamos un correo con todos los detalles del día y tus paneles. ¡Nos vemos pronto!</p>
       <div class="recap" id="recap"></div>
     </div>
   </div>
@@ -647,7 +647,7 @@
 /* ============================================================
    CONFIGURACIÓN — PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
    ============================================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwKx2N7Ak_yu8tE6X4q3IvUEOT4UdflfKZJPFzBe5_I_GkGUeHUj01xWNjhtQCRJJVeOA/exec";
+const SCRIPT_URL = "PEGA_AQUI_TU_URL_DEL_APPS_SCRIPT";
 
 /* Límites (se aplican igual aunque no se muestren al usuario) */
 const SEATS_PER_PANEL  = 50;
@@ -666,9 +666,9 @@ const PANELS = [
 ];
 
 const ROTATIONS = [
-  { key:"r1", label:"Plenaria 1", time:"Panel Profesional I" },
-  { key:"r2", label:"Plenaria 2", time:"Panel Profesional II" },
-  { key:"r3", label:"Plenaria 3", time:"Panel Profesional III" },
+  { key:"r1", label:"Panel Profesional I",  time:"" },
+  { key:"r2", label:"Panel Profesional II", time:"" },
+  { key:"r3", label:"Panel Profesional III",time:"" },
 ];
 
 let counts = {};
@@ -688,7 +688,7 @@ function buildRotations(){
   document.getElementById('rotations').innerHTML = ROTATIONS.map(rot => `
     <div class="rotation" id="rot-${rot.key}">
       <div class="rot-head">
-        <div class="rt">${rot.label}<small>${rot.time}</small></div>
+        <div class="rt">${rot.label}${rot.time?`<small>${rot.time}</small>`:''}</div>
         <div class="rot-chip" id="chip-${rot.key}">Sin elegir</div>
       </div>
       <div class="panel-grid">
@@ -857,7 +857,7 @@ async function submitForm(){
 
   if(!selection.r1||!selection.r2||!selection.r3){
     ok=false;
-    ge.textContent="Debes elegir un panel para cada una de las 3 plenarias.";
+    ge.textContent="Debes elegir un panel para cada uno de los 3 paneles profesionales.";
     ge.classList.add('show');
   }
 
@@ -939,9 +939,9 @@ function showSuccess(p){
   document.getElementById('recap').innerHTML=`
     <div class="rl"><span>Nombre</span><b>${p.nombre}</b></div>
     <div class="rl"><span>Colegio</span><b>${p.colegio}</b></div>
-    <div class="rl"><span>Plenaria 1</span><b>${p.r1_nombre}</b></div>
-    <div class="rl"><span>Plenaria 2</span><b>${p.r2_nombre}</b></div>
-    <div class="rl"><span>Plenaria 3</span><b>${p.r3_nombre}</b></div>
+    <div class="rl"><span>Panel Profesional I</span><b>${p.r1_nombre}</b></div>
+    <div class="rl"><span>Panel Profesional II</span><b>${p.r2_nombre}</b></div>
+    <div class="rl"><span>Panel Profesional III</span><b>${p.r3_nombre}</b></div>
     <div class="rl"><span>Almuerzo</span><b>${p.almuerzo}</b></div>`;
   const sc=document.getElementById('successCard');
   sc.classList.add('show');

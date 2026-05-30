@@ -373,6 +373,37 @@
     transition:background .2s,color .2s;flex-shrink:0;
   }
   .up-remove:hover{background:var(--ink);color:#fff}
+
+  /* ---- COST SUMMARY ---- */
+  .cost-summary{
+    background:var(--bg);
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    padding:16px 20px;
+    margin:0 0 22px;
+  }
+  .cost-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:7px 0;font-size:.95rem;
+  }
+  .cost-row span{color:var(--ink-soft)}
+  .cost-row b{font-family:'Archivo',sans-serif;font-weight:700}
+  .cost-row.total{
+    border-top:1px solid var(--line);
+    margin-top:4px;padding-top:11px;
+  }
+  .cost-row.total span{color:var(--ink);font-weight:600}
+  .cost-row.total b{
+    font-size:1.25rem;font-weight:900;
+    background:var(--lime);color:var(--ink);
+    padding:3px 12px;border-radius:7px;
+  }
+  .cost-note{
+    margin-top:10px;padding-top:10px;
+    border-top:1px solid var(--line-soft);
+    font-size:.8rem;color:var(--ink-mute);
+    font-style:italic;line-height:1.5;
+  }
   .panel-grid{
     display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;
   }
@@ -582,7 +613,13 @@
       <div class="step-head" style="margin-top:40px">
         <span class="step-num">04</span><h3>Comprobante de pago</h3>
       </div>
-      <p class="step-desc">Realiza el pago a la siguiente cuenta y sube la captura del comprobante. <b>Sin comprobante no se puede confirmar la inscripción.</b> <span id="payTotal" style="display:none"><br>Si pagas el almuerzo por anticipado, el monto total es <b id="payTotalAmt">$5</b>. Si lo pagas el día del evento, sube solo el comprobante de la entrada.</span></p>
+      <p class="step-desc">Realiza el pago a la siguiente cuenta y sube la captura del comprobante. <b>Sin comprobante no se puede confirmar la inscripción.</b></p>
+      <div class="cost-summary">
+        <div class="cost-row"><span>Entrada</span><b>$5</b></div>
+        <div class="cost-row" id="costLunchRow" style="display:none"><span>Almuerzo</span><b>$2</b></div>
+        <div class="cost-row total"><span>Total a pagar</span><b id="payTotalAmt">$5</b></div>
+        <div class="cost-note" id="costLunchNote" style="display:none">El almuerzo puedes pagarlo por anticipado o el día del evento. Si lo pagas el día, sube solo el comprobante de la entrada ($5).</div>
+      </div>
 
       <div class="pay-card">
         <div class="pay-row"><span>Titular</span><b>José Valle</b></div>
@@ -832,14 +869,15 @@ function copyAcct(btn){
 }
 
 /* Costos */
-const COST_ENTRY = 3;   // costo de entrada base (USD)
+const COST_ENTRY = 5;   // costo de entrada base (USD)
 const COST_LUNCH = 2;   // costo de almuerzo (USD)
 
 function toggleLunch(){
   const wantsLunch = document.getElementById('f_almuerzo').checked;
   const total = COST_ENTRY + (wantsLunch ? COST_LUNCH : 0);
   document.getElementById('payTotalAmt').textContent = "$"+total;
-  document.getElementById('payTotal').style.display = wantsLunch ? 'inline' : 'none';
+  document.getElementById('costLunchRow').style.display = wantsLunch ? 'flex' : 'none';
+  document.getElementById('costLunchNote').style.display = wantsLunch ? 'block' : 'none';
 }
 
 async function submitForm(){
